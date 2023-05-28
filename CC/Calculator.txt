@@ -1,0 +1,43 @@
+Calculator :
+
+public class CalculatorEx {
+	 public static void calculate(Integer num1, Integer num2) {
+        Integer sum = num1 + num2;
+        Integer difference = num1 - num2;
+        Integer product = num1 * num2;
+        Decimal quotient = num1 / (Decimal)num2;
+
+        System.debug('Sum: ' + sum);
+        System.debug('Difference: ' + difference);
+        System.debug('Product: ' + product);
+        System.debug('Quotient: ' + quotient);
+    }
+}
+
+
+public class Calculator {
+    public static void calculate(Integer num1, Integer num2, String op){
+        if(op=='+'){
+            Integer sum=num1+num2;
+            System.debug('Sum '+sum);
+        }
+        if(op=='-'){
+            Integer diff=num1-num2;
+            System.debug('Difference '+diff);
+        }
+        if(op=='*'){
+            Integer mul=num1*num2;
+            System.debug('Multiplication '+mul);
+        }
+        if(op=='/'){
+            if(num2==0){
+                System.debug('Divide by zero error');
+            }
+            else{
+                Decimal div=num1/num2;
+                System.debug('Division :'+div);
+            }
+        }
+        
+    }
+}

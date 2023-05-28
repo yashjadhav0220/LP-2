@@ -1,0 +1,52 @@
+1.Create an Apex Class:
+Go to the Salesforce Setup page.
+In the Quick Find box, type "Developer Console" and select it.
+In the Developer Console, click on "File" and select "New" > "Apex Class".
+Provide a name for the class, such as "TemperatureConverter" and click "OK".
+Replace the existing code with the following Apex code
+
+public class TemperatureConverter {
+    public static Decimal celsiusToFahrenheit(Decimal celsius) {
+        return (celsius * 9/5) + 32;
+    }
+    
+    public static Decimal fahrenheitToCelsius(Decimal fahrenheit) {
+        return (fahrenheit - 32) * 5/9;
+    }
+}
+
+
+2.Create a Visualforce Page:
+In the Developer Console, click on "File" and select "New" > "Visualforce Page".
+Provide a name for the Visualforce page, such as "TemperatureConversionPage" and click "OK".
+Replace the existing code with the following Visualforce code:
+
+<apex:page controller="TemperatureConversionController">
+    <apex:form>
+        <apex:pageBlock>
+            <apex:pageBlockSection>
+                <apex:inputText value="{!celsius}" label="Enter temperature in Celsius"/>
+                <apex:commandButton value="Convert to Fahrenheit" action="{!convertToFahrenheit}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!showResult}">
+                <apex:outputText value="The temperature in Fahrenheit is: {!fahrenheit}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+3.Create a Controller:
+In the Developer Console, click on "File" and select "New" > "Apex Class".
+Provide a name for the class, such as "TemperatureConversionController" and click "OK".
+Replace the existing code with the following Apex code:
+
+public class TemperatureConversionController {
+    public Decimal celsius { get; set; }
+    public Decimal fahrenheit { get; set; }
+    public Boolean showResult { get; set; }
+    
+    public void convertToFahrenheit() {
+        fahrenheit = TemperatureConverter.celsiusToFahrenheit(celsius);
+        showResult = true;
+    }
+}
